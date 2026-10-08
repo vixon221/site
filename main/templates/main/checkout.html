@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Оформление заказа — FoodHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+    <div class="container" style="max-width: 600px;">
+        <div class="card shadow border-0 p-4">
+            <h3 class="fw-bold mb-3">🚚 Оформление доставки</h3>
+            <p class="text-muted">К оплате: <b class="text-success fs-5">{{ total_price }} сом</b></p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Имя получателя</label>
+                    <input type="text" class="form-control" required placeholder="Иван">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Номер телефона</label>
+                    <input type="tel" class="form-control" required placeholder="+996 555 123 456">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Адрес доставки</label>
+                    <textarea class="form-control" rows="2" required placeholder="Улица, дом, квартира"></textarea>
+                </div>
+
+                <hr class="my-4">
+                <h5 class="fw-bold mb-3">💳 Онлайн-оплата картой</h5>
+                <div class="mb-3">
+                    <label class="form-label">Номер карты (16 цифр)</label>
+                    <input type="text" name="card_number" class="form-control" maxlength="16" required placeholder="1234 5678 9101 1121">
+                </div>
+
+                <button type="submit" class="btn btn-warning w-100 fw-bold btn-lg mt-3">Оплатить {{ total_price }} сом</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
