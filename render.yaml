@@ -6,7 +6,7 @@ services:
     region: frankfurt
     plan: free
     buildCommand: "./build.sh"
-    startCommand: "gunicorn myproject.wsgi:application" # Замените foodhub на имя вашей папки с wsgi.py
+    startCommand: "gunicorn django_project.wsgi:application" # Замените foodhub на имя вашей папки с wsgi.py
     envVars:
       - key: DATABASE_URL
         fromDatabase:
